@@ -26,6 +26,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QFileDialog>
 
 #include "networkmodelcontroller.h"
 
@@ -176,6 +177,16 @@ void NetworkModelController::removeBuffers(const QModelIndexList &indexList) {
   }
 }
 
+void NetworkModelController::exportBuffers(const QModelIndexList &indexList) {
+  QString path = QFileDialog::getExistingDirectory(0, tr("Save location"));
+
+  if(path.isEmpty()) {
+    // TODO: show error message
+  }
+
+  // TODO: get backlog and save to file
+}
+
 void NetworkModelController::handleExternalAction(ActionType type, QAction *action) {
   Q_UNUSED(type);
   if(receiver() && method()) {
@@ -241,6 +252,8 @@ void NetworkModelController::handleNetworkAction(ActionType type, QAction *) {
 void NetworkModelController::handleBufferAction(ActionType type, QAction *) {
   if(type == BufferRemove) {
     removeBuffers(indexList());
+  } else if (type == BufferExport) {
+    exportBuffers(indexList());
   } else {
 
     QList<BufferInfo> bufferList; // create temp list because model indexes might change
