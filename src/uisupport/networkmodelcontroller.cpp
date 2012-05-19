@@ -184,7 +184,16 @@ void NetworkModelController::exportBuffers(const QModelIndexList &indexList) {
     // TODO: show error message
   }
 
-  // TODO: get backlog and save to file
+  foreach(QModelIndex index, indexList) {
+    BufferInfo info = index.data(NetworkModel::BufferInfoRole).value<BufferInfo>();
+    if(info.isValid()) {
+      if(info.type() == BufferInfo::QueryBuffer || info.type() == BufferInfo::ChannelBuffer)
+        QString filename = path.append(info.bufferName()).append(".txt");
+        // TODO: get backlog and save to file
+        ;
+    }
+  }
+
 }
 
 void NetworkModelController::handleExternalAction(ActionType type, QAction *action) {
