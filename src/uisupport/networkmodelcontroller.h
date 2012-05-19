@@ -53,6 +53,7 @@ public:
     BufferPart = 0x20,
     BufferSwitchTo = 0x30,
     BufferRemove = 0x40,
+    BufferExport = 0x50,
 
     // Hide actions
     HideMask = 0x0f00,
@@ -142,6 +143,7 @@ protected:
   BufferId findQueryBuffer(const QModelIndex &index, const QString &predefinedNick = QString()) const;
   BufferId findQueryBuffer(NetworkId, const QString &nickName) const;
   void removeBuffers(const QModelIndexList &indexList);
+  void exportBuffers(const QModelIndexList &indexList);
 
 protected slots:
   virtual void actionTriggered(QAction *);

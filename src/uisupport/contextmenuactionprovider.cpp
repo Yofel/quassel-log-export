@@ -42,6 +42,7 @@ ContextMenuActionProvider::ContextMenuActionProvider(QObject *parent) : NetworkM
   registerAction(BufferPart, SmallIcon("irc-close-channel"), tr("Part"));
   registerAction(BufferRemove, tr("Delete Chat(s)..."));
   registerAction(BufferSwitchTo, tr("Go to Chat"));
+  registerAction(BufferExport, tr("Export Chat(s)..."));
 
   registerAction(HideJoin, tr("Joins"), true);
   registerAction(HidePart, tr("Parts"), true);
@@ -280,6 +281,7 @@ void ContextMenuActionProvider::addBufferItemActions(QMenu *menu, const QModelIn
       addAction(HideBufferTemporarily, menu, isCustomBufferView);
       addAction(HideBufferPermanently, menu, isCustomBufferView);
       addAction(BufferRemove, menu, index, InactiveState);
+      addAction(BufferExport, menu, index);
       break;
 
     case BufferInfo::QueryBuffer:
@@ -294,6 +296,7 @@ void ContextMenuActionProvider::addBufferItemActions(QMenu *menu, const QModelIn
       addAction(HideBufferTemporarily, menu, isCustomBufferView);
       addAction(HideBufferPermanently, menu, isCustomBufferView);
       addAction(BufferRemove, menu, index);
+      addAction(BufferExport, menu, index);
       break;
     }
 

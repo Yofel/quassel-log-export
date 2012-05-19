@@ -168,7 +168,7 @@ void NetworkModelController::removeBuffers(const QModelIndexList &indexList) {
     msg += tr("<b>Note:</b> This will delete all related data, including all backlog data, from the core's database and cannot be undone.");
     if(inactive.count() != indexList.count())
       msg += tr("<br>Active channel buffers cannot be deleted, please part the channel first.");
-    
+
     if(QMessageBox::question(0, tr("Remove buffers permanently?"), msg, QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
       foreach(BufferInfo info, inactive)
         Client::removeBuffer(info.bufferId());
