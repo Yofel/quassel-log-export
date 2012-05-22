@@ -181,7 +181,7 @@ void NetworkModelController::exportBuffers(const QModelIndexList &indexList) {
   QString path = QFileDialog::getExistingDirectory(0, tr("Save location"));
 
   if(path.isEmpty()) {
-    // TODO: show error message
+    QMessageBox::warning(0, tr("Invalid path"),  tr("Path \"%1\" couldn't be found").arg(path));
   }
 
   foreach(QModelIndex index, indexList) {
